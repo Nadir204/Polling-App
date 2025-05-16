@@ -1,0 +1,20 @@
+In db we have 3 coloum:
+✅ POLL → stores the question
+
+✅ POLL_OPTIONS → stores the answer options
+
+✅ POLL_VOTES → stores the votes per option
+
+Show Options and Votes for a Specific Poll (e.g., Poll ID = 1):
+
+SELECT 
+    p.QUESTION AS poll_question,
+    o.OPTION_TEXT AS option_text,
+    COUNT(v.ID) AS vote_count
+FROM POLL p
+JOIN POLL_OPTIONS o ON p.ID = o.POLL_ID
+LEFT JOIN POLL_VOTES v ON o.ID = v.OPTION_ID
+WHERE p.ID = 1
+GROUP BY p.QUESTION, o.OPTION_TEXT;
+
+note: must write on h2 databse
